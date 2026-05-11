@@ -1,0 +1,37 @@
+.custom-input {
+  position: relative;
+}
+
+.custom-input--invalid input {
+  border-color: #f2890f;
+  box-shadow: 0 0 1px 1px #f2890f;
+}
+
+.custom-input__invalid-text {
+  position: absolute;
+  color: #f2890f;
+  top: calc(100% + 5px);
+}
+
+
+.custom-checkbox__label--invalid {
+  animation: text-blink 0.5s 3;
+}
+
+.custom-checkbox__label--invalid .link {
+  animation: text-blink 0.5s 3;
+}
+
+@keyframes text-blink {
+  0% {
+    color: #e6e6e6;
+  }
+
+  50% {
+    color: #f2890f;
+  }
+
+  100% {
+    color: #e6e6e6;
+  }
+}
