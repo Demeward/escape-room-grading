@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { QuestType, QuestLevel, RequestStatus } from '../../const';
 import QuestCard from '../../components/quest-card/quest-card';
 import QuestFilter from '../../components/quest-filter/quest-filter';
+import LoadingFailed from '../../components/loading-failed/loading-failed';
 import { useAppSelector } from '../../hooks';
 import { selectQuests, selectQuestsStatus } from '../../store/main/main';
 import { filterQuests } from '../../utils';
@@ -19,15 +20,7 @@ function MainPage() {
   const handleQuestLevelChange = useCallback((level: QuestLevel) => setQuestLevelFilter(level), []);
 
   if(questsStatus === RequestStatus.Error) {
-    return (
-      <main className="page-content">
-        <div className="container">
-          <div className="page-content__title-wrapper">
-            <h1 className="title title--size-m page-content__title">Не удалось загрузить список квестов</h1>
-          </div>
-        </div>
-      </main>
-    );
+    return <LoadingFailed message={'Не удалось загрузить список квестов'} />;
   }
 
   return (

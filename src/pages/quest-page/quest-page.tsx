@@ -5,6 +5,7 @@ import { AppRoute, QuestLevelMap, QuestTypeMap, RequestStatus } from '../../cons
 import { selectCurrentQuest, selectQuestStatus } from '../../store/quest/quest';
 import { fetchQuestAction } from '../../store/quest/api-action';
 import Loader from '../../components/loader/loader';
+import LoadingFailed from '../../components/loading-failed/loading-failed';
 
 
 function QuestPage() {
@@ -24,8 +25,16 @@ function QuestPage() {
       });
   }, [currentId, dispatch, navigate]);
 
-  if(questStatus === RequestStatus.Loading || !currentQuest) {
+  if(questStatus === RequestStatus.Loading) {
     return <Loader />;
+  }
+
+  if(questStatus === RequestStatus.Error) {
+    return <LoadingFailed message={'Не удалось загрузить информацию о квесте'} />;
+  }
+
+  if (!currentQuest) {
+    return null;
   }
 
   const { id, title, description, type, level, peopleMinMax, previewImg, previewImgWebp, coverImg, coverImgWebp } = currentQuest;

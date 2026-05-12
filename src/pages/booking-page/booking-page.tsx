@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import Loader from '../../components/loader/loader';
 import Map from '../../components/map/map';
 import BookingForm from '../../components/booking-form/booking-form';
+import LoadingFailed from '../../components/loading-failed/loading-failed';
 import { fetchQuestAction, fetchQuestBookingAction } from '../../store/quest/api-action';
 import { AppRoute, RequestStatus } from '../../const';
 import { QuestBooking } from '../../types/quest';
@@ -53,8 +54,16 @@ function BookingPage() {
     };
   }, [currentId, dispatch]);
 
-  if (questBookingPlacesStatus === RequestStatus.Loading || !questBookingPlaces.length || !currentBookingPlace) {
+  if (questBookingPlacesStatus === RequestStatus.Loading) {
     return <Loader />;
+  }
+
+  if (questBookingPlacesStatus === RequestStatus.Error) {
+    return <LoadingFailed message={'Не удалось загрузить информацию о бронировании квеста'}/>;
+  }
+
+  if(!currentBookingPlace || !questBookingPlaces.length) {
+    return null;
   }
 
 
