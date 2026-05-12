@@ -6,13 +6,13 @@ import { QuestBooking, QuestLocation } from '../../types/quest';
 import { isBookingPlace } from '../../utils';
 
 const defaultCustomIcon = L.icon({
-  iconUrl: '/markup/img/svg/pin-default.svg',
+  iconUrl: '/img/svg/pin-default.svg',
   iconSize: [23, 42],
   iconAnchor: [12, 39],
 });
 
 const currentCustomIcon = L.icon({
-  iconUrl: '/markup/img/svg/pin-active.svg',
+  iconUrl: '/img/svg/pin-active.svg',
   iconSize: [23, 42],
   iconAnchor: [12, 39],
 });
