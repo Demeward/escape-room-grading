@@ -17,7 +17,7 @@ function QuestCard({quest, reservedQuest}: QuestCardProps) {
     <div className="quest-card">
       <div className="quest-card__img">
         <picture>
-          <source type="image/webp" srcSet={`${previewImgWebp}`} /><img src={previewImg} srcSet="img/content/crypt/crypt-size-s@2x.jpg 2x" width="344" height="232" alt="Мужчина в клетке в подземелье." />
+          <source type="image/webp" srcSet={`${previewImgWebp}`} /><img src={previewImg} srcSet="/public/img/content/crypt/crypt-size-s@2x.jpg 2x" width="344" height="232" alt="Мужчина в клетке в подземелье." />
         </picture>
       </div>
       <div className="quest-card__content">
