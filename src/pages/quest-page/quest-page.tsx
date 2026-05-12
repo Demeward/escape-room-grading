@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
-import { useParams, Link, generatePath } from 'react-router-dom';
+import { useParams, Link, generatePath, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AppRoute, QuestLevelMap, QuestTypeMap, RequestStatus } from '../../const';
 import { selectCurrentQuest, selectQuestStatus } from '../../store/quest/quest';
 import { fetchQuestAction } from '../../store/quest/api-action';
-import { redirectToRoute } from '../../store/main/main';
 import Loader from '../../components/loader/loader';
 
 
 function QuestPage() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const {id: currentId} = useParams();
   const currentQuest = useAppSelector(selectCurrentQuest);
   const questStatus = useAppSelector(selectQuestStatus);
@@ -19,10 +19,10 @@ function QuestPage() {
       .unwrap()
       .catch((rejectedValue) => {
         if (rejectedValue === 'NOT_FOUND') {
-          dispatch(redirectToRoute(AppRoute.NotFound));
+          navigate(AppRoute.NotFound);
         }
       });
-  }, [currentId, dispatch]);
+  }, [currentId, dispatch, navigate]);
 
   if(questStatus === RequestStatus.Loading || !currentQuest) {
     return <Loader />;
